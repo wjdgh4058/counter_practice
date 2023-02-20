@@ -2,6 +2,7 @@
 
 class Counter extends React.Component {
   // 개발자의 기본 props
+
   static defaultProps = {
     min: 1,
     count: 1,
