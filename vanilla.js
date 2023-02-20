@@ -73,11 +73,20 @@ class Counter {
     this.render();
   }
 
-  handleIncrement(e) {
+  /* handleIncrement(e) {
     // console.log(this);
     // console.log(e.target);
     // props: step, max
     // state: this.#count (읽기), this.setCount (쓰기)
+    const { step, max } = this.#options;
+    // console.log(step, max);
+    let updateCountValue = this.count + step;
+
+    if (updateCountValue > max) {
+      console.log("max 값보다 업데이트 할 값이 커요!!");
+      updateCountValue = max;
+    }
+    this.setCount(updateCountValue);
   }
 
   handleDecrement(e) {
@@ -89,13 +98,77 @@ class Counter {
     // console.log(this.#output);
     this.#output.value = this.count; // this.#count
   }
+  renderIncrementButton() {
+    this.#incrementButton.disabled = true;
+  }
 
   setCount(newCountValue) {
     this.#count = newCountValue;
     this.render();
   }
-}
+} */
 
+  handleIncrement = (e) => {
+    // props: step, max
+    const { step, max } = this.#options;
+
+    // state: this.#count (읽기), this.setCount (쓰기)
+    // console.log(this.count);
+
+    let updateCountValue = this.count + step;
+    // updateCountValue vs. max 비교
+    if (updateCountValue > max) {
+      updateCountValue = max;
+      this.renderIncrementButton();
+    }
+
+    this.setCount(updateCountValue);
+  };
+
+  handleDecrement = (e) => {
+    // console.log(this);
+    // console.log(e.target);
+    // props: step, max
+    const { step, min } = this.#options;
+
+    // state: this.#count (읽기), this.setCount (쓰기)
+    // console.log(this.count);
+
+    let updateCountValue = this.count - step;
+    // updateCountValue vs. max 비교
+    if (updateCountValue < min) {
+      updateCountValue = min;
+      this.renderDecrementButton();
+    }
+
+    this.setCount(updateCountValue);
+  };
+
+  // public instance methods
+  render() {
+    this.#output.value = this.count;
+  }
+
+  renderIncrementButton() {
+    console.log("update increment button disabled state");
+    this.#incrementButton.disabled = true;
+  }
+
+  renderDecrementButton() {
+    console.log("update increment button disabled state");
+    this.#decrementButton.disabled = true;
+  }
+
+  // 비공개인 this.#count를 업데이트 할 수 있는 인스턴스 메서드
+  // React 클래스 컴포넌트의 this.setState()
+
+  // 1. static method
+  // 2. instance method
+  setCount(newCountValue) {
+    this.#count = newCountValue;
+    this.render();
+  }
+}
 // instance (object)
 // API (input, output 설계 (design))
 // new Counter(domElement, userOptions)
