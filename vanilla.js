@@ -1,8 +1,10 @@
 // console.log('vanilla!');
 
 class Counter {
-  // 기본 옵션
-  // 인스턴스 생성 과정 없이 바로 접근/조작 할
+  // 기본 옵션 (개발자가 설정한)
+  // 인스턴스 생성 과정 없이 바로 접근/조작할 수 있게 한다.
+  // 정적인(static) 메서드
+  // static
   static defaultOption = {
     count: 1,
     min: 1,
@@ -47,7 +49,8 @@ class Counter {
   }
 
   render() {
-    console.log("렌더링");
+    // console.log(this.#output);
+    this.#output.value = 100;
   }
 }
 
