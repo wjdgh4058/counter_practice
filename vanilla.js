@@ -58,6 +58,31 @@ class Counter {
     this.#incrementButton = this.#component.querySelector("button:first-child");
     this.#decrementButton = this.#component.querySelector("button:last-child");
     this.#output = this.#component.querySelector("output");
+
+    // 이벤트 핸들링
+    // React 이벤트 위임
+    // this.#component.addEventListener("click", (e) => {
+    //   const { target } = e;
+    //   console.log(target);
+    // });
+
+    // 직접 각 버튼에 이벤트 걸기
+    this.#incrementButton.addEventListener("click", this.handleIncrement);
+    this.#decrementButton.addEventListener("click", this.handleDecrement);
+
+    this.render();
+  }
+
+  handleIncrement(e) {
+    // console.log(this);
+    // console.log(e.target);
+    // props: step, max
+    // state: this.#count (읽기), this.setCount (쓰기)
+  }
+
+  handleDecrement(e) {
+    console.log(this);
+    console.log(e.target);
   }
 
   render() {
@@ -67,6 +92,7 @@ class Counter {
 
   setCount(newCountValue) {
     this.#count = newCountValue;
+    this.render();
   }
 }
 
@@ -80,7 +106,9 @@ const myCounter = new Counter(document.querySelector(".counter"), {
   step: 1,
 });
 
-myCounter.render();
+// setTimeout(()=> myCount)
+
+// myCounter.render();
 
 // console.log(counter.#options);
 // console.log(counter.component);
