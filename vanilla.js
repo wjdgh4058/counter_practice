@@ -13,7 +13,17 @@ class Counter {
   };
 
   #component = null;
-  #options = {};
+  #options = null;
+
+  // 컴포넌트 상태
+  #count = 0; // number
+
+  get count() {
+    return this.#count;
+  }
+  // set count(newCountValue) {
+  //   this.#count = newCountValue;
+  // }
 
   // 클래스 외부에서 전달 받아야 할 것들
   // 어떤 문서의 요소를 카운터 컴포넌트에 만들까?
@@ -30,6 +40,8 @@ class Counter {
     // 전개구문 ...
 
     this.#options = { ...Counter.defaultOption, ...userOptions };
+
+    this.#count = this.#options.count;
 
     this.#init();
   }
@@ -50,7 +62,11 @@ class Counter {
 
   render() {
     // console.log(this.#output);
-    this.#output.value = 100;
+    this.#output.value = this.count; // this.#count
+  }
+
+  setCount(newCountValue) {
+    this.#count = newCountValue;
   }
 }
 
